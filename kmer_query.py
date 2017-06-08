@@ -27,7 +27,7 @@ if __name__ == "__main__":
     KMC_PATH_3 = "./bin/kmc"  # the path of KMC version 3.0.0
     KMC_PARH_1 = "./bin/kmcV1"  # the path of KMC version 1.0.0
     KMC_PARH_2 = "./bin/kmcV22"  # the path of KMC version 2.2.0
-    QUERY_PATH = "../KMC/bin/query"
+    QUERY_PATH = "./bin/query"
 
     # set dir of the temporary files
     QRY_DIR = "./qry/"  # dir to store the partitioned query files sorted by length
