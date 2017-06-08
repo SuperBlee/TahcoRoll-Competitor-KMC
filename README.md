@@ -30,10 +30,10 @@ In `kmer_query.py`, change __line 84__ where ```subprocess.call([KMC_PATH_3, ...
 I didn't do that for now. I got to finish my final project reports. sorry. But I think that's not hard.
 
 ### 5. What's next?
-> Put the selection of kmc versions into arguments.
-> Include the API call code
-> Implement automatic timers
-> ... (Any other stuff that looks cool but I am not going to do for sure.)
+- Put the selection of kmc versions into arguments.
+- Include the API call code
+- Implement automatic timers
+- ... (Any other stuff that looks cool but I am not going to do for sure.)
 
 Have fun!
 
