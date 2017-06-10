@@ -86,6 +86,7 @@ int main(int argc, char* argv[]){
 
             // Do query on complement DNA string
             std::transform(query.begin(), query.end(), query.begin(), complement);
+            std::reverse(query.begin(), query.end());
             CKmerAPI kmer_object_2(_kmer_length);
             kmer_object_2.from_string(query);
             if(! (kmer_database.CheckKmer(kmer_object_2, cpm_kmer_count)))
