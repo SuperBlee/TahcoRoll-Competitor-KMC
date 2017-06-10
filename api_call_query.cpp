@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 #include "../kmc_api/kmc_file.h"
 
 /**
@@ -10,6 +11,8 @@
  * @author: Zeyu Li (zyli@cs.ucla.edu) Jun-5-2017
  */
  
+char complement(char n);
+
 int main(int argc, char* argv[]){
     
     CKMCFile kmer_database;
@@ -72,15 +75,24 @@ int main(int argc, char* argv[]){
         std::cout << "\tReading k-mers and doing queries ... " << std::endl;
         for( std::string query; getline( input_query, query ); )
         {
-            uint32 kmer_count = 0;
+            uint32 kmer_count = 0;  // The count of the original kmer 
+            uint32 cpm_kmer_count = 0;  // The count of the complement kmer
+
             // Declare a KmerAPI object used for kmer query
             CKmerAPI kmer_object(_kmer_length);
-            std::string query_trim = query.substr(0, query.size() -1);
-            kmer_object.from_string(query_trim);
+            kmer_object.from_string(query);
             if(! (kmer_database.CheckKmer(kmer_object, kmer_count)))
-                output_num << "0\n";
-            else
-                output_num << kmer_count << "\n";
+                kmer_count = 0;
+
+            // Do query on complement DNA string
+            std::transform(query.begin(), query.end(), query.begin(), complement);
+            CKmerAPI kmer_object_2(_kmer_length);
+            kmer_object_2.from_string(query);
+            if(! (kmer_database.CheckKmer(kmer_object_2, cpm_kmer_count)))
+                cpm_kmer_count = 0;
+
+            uint32 total_cnt = kmer_count + cpm_kmer_count;
+            output_num << total_cnt << "\n";
         }
         std::cout << "\tQueries finished. The please check " << output_checknum_file << " for results." << std::endl;
         kmer_database.Close();
@@ -89,4 +101,18 @@ int main(int argc, char* argv[]){
 }
 
 
-
+char complement(char n)
+{
+    switch(n)
+    {
+        case 'A':
+            return 'T';
+        case 'T':
+            return 'A';
+        case 'C':
+            return 'G';
+        case 'G':
+            return 'C';
+    }
+}
+            
