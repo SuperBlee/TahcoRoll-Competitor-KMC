@@ -7,12 +7,14 @@ Kmer Query based on KMC
     │   ├── kmc
     │   ├── kmcV1
     │   ├── kmcV22
+    |   ├── kmc_dump
     │   └── query
     ├── kmer_query.py
+    ├── api_call_query.cpp
     └── run.sh
 
 You can see above files in this repository.
-`bin` includes three version of kmc's and and api program that is executable. Try `./bin/query` to see the short usage.`kmc` is the 3.0.0 version, `kmcV1` is the 1.0.0 version, `kmcV22` is the 2.2.0 version. Try `./bin/kmc`, `./bin/kmcV1`, and `./bin/kmcV22` to see the usage of the kmc's.
+`bin` includes three version of kmc's and and api program that is executable. Try `./bin/query` to see the short usage.`kmc` is the 3.0.0 version, `kmcV1` is the 1.0.0 version, `kmcV22` is the 2.2.0 version, `kmc_dump` is the tools for dumping the all the kmer counts. Try `./bin/kmc`, `./bin/kmcV1`, `./bin/kmcV22` to see the usage of the kmc's, and `./bin/kmc_dump` to see the how to dump the kmers.
 
 ### 1.5 What do you input?
 3 parameters.
@@ -38,3 +40,6 @@ I didn't do that for now. I got to finish my final project reports. sorry. But I
 Have fun!
 
 -- Z
+
+#### New
+Now the output of the `query` for a single string _s_ is the summation of the count of _s_ and its complement stirng.
